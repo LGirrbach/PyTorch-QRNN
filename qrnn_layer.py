@@ -37,7 +37,7 @@ class QRNNLayer(nn.Module):
         recurrent_gates = torch.cat([recurrent_gates, padding], dim=1)
         
         # Calculate expanded recursion by cumsum (logcumsumexp in log space)
-        log_hidden = torch.logcumsumexp(log_z + log_one_minus_f + recurrent_gates, axis=1)
+        log_hidden = torch.logcumsumexp(log_z + log_one_minus_f + recurrent_gates, dim=1)
         hidden = torch.exp(log_hidden - recurrent_gates)
         
         return hidden
