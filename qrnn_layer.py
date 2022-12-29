@@ -3,14 +3,12 @@ import torch.nn as nn
 
 
 class QRNNLayer(nn.Module):
-    def __init__(self, input_size: int, hidden_size: int, kernel_size: int,
-                 dropout: float):
+    def __init__(self, input_size: int, hidden_size: int, kernel_size: int):
         super(QRNNLayer, self).__init__()
         
         self.input_size = input_size
         self.hidden_size = hidden_size
         self.kernel_size = kernel_size
-        self.dropout = dropout
         
         self.z_conv = nn.Conv1d(input_size, hidden_size, kernel_size, padding="same")
         self.f_conv = nn.Conv1d(input_size, hidden_size, kernel_size, padding="same")
