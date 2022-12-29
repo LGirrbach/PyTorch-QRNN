@@ -36,7 +36,7 @@ h_t =
 \frac{\displaystyle\sum_{s=0}^{t} z_s \cdot (1 - f_s) \prod_{t'=s+1}^{T} f_{t'}}{\displaystyle \prod_{t'=t+1}^T f_{t'}}
 $$
 
-Now, the product $\prod_{t'=s+1}^t f_{t'}$, which is the same as in the denominator, can be pre-calculated efficiently independetly of $t$ by a `cumprod` operation.
+Now, the product $\displaystyle\prod_{t'=s+1}^t f_{t'}$, which is the same as in the denominator, can be pre-calculated efficiently independently of $t$ by a `cumprod` operation.
 Accordingly, calculating the numerator is implemented by a `cumsum` operation.
 Note, however, that the division prohibits any zeros in the recurrent gates. This is naturally enforced by using the `sigmoid` activation function to calculate recurrent gate values.
 Unfortunately, this also prohibits any use of recurrent dropout such as zoneout explored in [1].
@@ -50,4 +50,4 @@ TODO
 
 ## References
 
-  * Bradbury, James, et al. "Quasi-recurrent neural networks." arXiv preprint arXiv:1611.01576 (2016). 
+[1]: Bradbury, James, et al. "Quasi-recurrent neural networks." arXiv preprint arXiv:1611.01576 (2016). 
