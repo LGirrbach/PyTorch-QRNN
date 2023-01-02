@@ -70,9 +70,12 @@ The only purpose of this comparison is to show the implementation works as expec
 Results are in the following table:
 
 Model| Perplexity |
------| -----------|
-QRNN | xx.xx      |
-LSTM | xx.xx      |
+-----|------------|
+QRNN | 109.18     |
+LSTM | 98.48      |
+
+Perplexity of LSTM is lower, but the same order of magnitude, which shows that this implementation works in principle.
+It may be the case that LSTM is the superior model though (can't confirm superiority of QRNN claimed by [1]).
 
 
 ## References
