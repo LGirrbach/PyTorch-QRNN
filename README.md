@@ -31,7 +31,7 @@ Note that the initial hidden state is initialised to all zeros and therefore doe
 We cannot calculate the product of gates $\displaystyle\prod^t_{t'=s+1} f_{t'}$ efficiently, because this depends both on $t$ and $s$.
 Therefore, computational and space complexity is quadratic in the number of timesteps.
 
-To circumvent this problem, we first multiply the sum by $\displaystyle\prod_{t''=t+1}^T$, where $T$ is the number of timesteps, and divide afterwards.
+To circumvent this problem, we first multiply the sum by $\displaystyle\prod_{t''=t+1}^T f_{t''}$, where $T$ is the number of timesteps, and divide afterwards.
 By distributivity, this becomes:
 
 $$
@@ -40,7 +40,7 @@ h_t =
 \frac{\displaystyle\sum_{s=0}^{t} z_s \cdot (1 - f_s) \prod_{t'=s+1}^{T} f_{t'}}{\displaystyle \prod_{t'=t+1}^T f_{t'}}
 $$
 
-Now, the product $\displaystyle\prod_{t'=s+1}^T f_{t'}$, which is the same as in the denominator, can be pre-calculated efficiently independently of $t$ by a `cumprod` operation.
+Now, the product $\displaystyle\prod_{t'=s+1}^T f_{t'}$, which also appears in the denominators, can be pre-calculated efficiently independently of $t$ by a `cumprod` operation.
 Accordingly, calculating the numerator is implemented by a `cumsum` operation.
 Note, however, that the division prohibits any zeros in the recurrent gates. This is naturally enforced by using the `sigmoid` activation function to calculate recurrent gate values.
 
